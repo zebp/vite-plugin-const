@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-const",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Compile time evaluation for Vite",
   "author": "zeb@zebulon.dev",
   "type": "module",
@@ -11,12 +11,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
   "license": "MIT",
   "dependencies": {
     "@babel/generator": "^7.22.15",
     "@babel/helper-validator-identifier": "^7.22.20",
-    "tsx": "^3.12.10",
+    "tsx": "^4.7.1",
     "vite": "^4.4.9"
   },
   "devDependencies": {

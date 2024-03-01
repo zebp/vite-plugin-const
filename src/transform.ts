@@ -1,4 +1,4 @@
-import generate from "@babel/generator";
+import { default as generate } from "@babel/generator";
 import { ExportNamedDeclaration } from "@babel/types";
 
 import * as childProcess from "node:child_process";
@@ -27,7 +27,7 @@ export async function evaluate(path: string): Promise<Record<string, unknown>> {
   const child = childProcess.exec(`node ${runnerPath()} ${path}`, {
     env: {
       ...process.env,
-      NODE_OPTIONS: "--experimental-loader=tsx",
+      NODE_OPTIONS: "--import tsx/esm",
     },
     maxBuffer: 1024 * 1024 * 1024,
   });
@@ -58,8 +58,8 @@ export async function evaluate(path: string): Promise<Record<string, unknown>> {
   return JSON.parse(output);
 }
 
-export async function transform(path: string): Promise<string> {
-  const exports = await evaluate(path);
+export async function transform(codePath: string): Promise<string> {
+  const exports = await evaluate(codePath);
   const body: ExportNamedDeclaration[] = [];
 
   for (const [name, value] of Object.entries(exports)) {
@@ -87,7 +87,8 @@ export async function transform(path: string): Promise<string> {
     }
   }
 
-  const generated = generate.default({
+  // @ts-ignore - https://github.com/babel/babel/issues/15269
+  const generated = generate({
     type: "File",
     program: {
       type: "Program",

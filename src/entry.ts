@@ -19,7 +19,7 @@ async function main() {
   }
 }
 
-function replacer(key: string, value: any) {
+function replacer(key: string, value: any): any {
   if (typeof value === "function") {
     throw new Error(
       `Functions cannot be serialized in const modules. (function ${key})`
