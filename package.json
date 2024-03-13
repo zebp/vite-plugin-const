@@ -1,29 +1,28 @@
 {
   "name": "vite-plugin-const",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Compile time evaluation for Vite",
   "author": "zeb@zebulon.dev",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "format": "biome format ./src --write",
+    "check:lint": "biome lint ./src",
+    "check:format": "biome format ./src",
+    "test": "vitest"
   },
   "keywords": [],
   "license": "MIT",
   "dependencies": {
-    "@babel/generator": "^7.22.15",
-    "@babel/helper-validator-identifier": "^7.22.20",
-    "tsx": "^4.7.1",
-    "vite": "^4.4.9"
+    "const-module": "^0.2.1",
+    "vite": "^5.1.6"
   },
   "devDependencies": {
-    "@babel/parser": "^7.22.16",
-    "@types/babel__generator": "^7.6.5",
-    "@types/babel__helper-validator-identifier": "^7.15.0",
-    "@types/node": "^20.6.2",
-    "bun-types": "^1.0.2",
-    "typescript": "^5.2.2"
+    "@biomejs/biome": "^1.5.3",
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3",
+    "vitest": "^1.3.1"
   }
 }

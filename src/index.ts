@@ -1,17 +1,17 @@
-import { Plugin } from "vite";
+import type { Plugin } from "vite";
+import { asConst } from "const-module";
 
-import * as transform from "./transform.js";
-
+// biome-ignore lint/complexity/noBannedTypes: <explanation>
 export type ConstPluginOptions = {};
 
 const constFileRegex = /\.const\.(ts|js)$/;
 
-export default function constPlugin({}: ConstPluginOptions = {}): Plugin {
+export default function constPlugin(_: ConstPluginOptions = {}): Plugin {
   return {
     name: "const",
     async transform(_, id): Promise<string | undefined> {
       if (!constFileRegex.test(id)) return undefined;
-      return await transform.transform(id);
+      return await asConst(id);
     },
   };
 }
